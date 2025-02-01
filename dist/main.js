@@ -47,10 +47,12 @@ async function run() {
         }
         else if (tag) {
             core.debug(`Getting release id for ${tag}...`);
+            core.debug(`before octokit call`);
             const release = await octokit.rest.repos.getReleaseByTag({
                 ...repo,
                 tag,
             });
+            core.debug(`after octokit call`);
             release_id = release.data.id;
         }
         else {
